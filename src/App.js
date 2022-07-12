@@ -17,13 +17,17 @@ import Navbar_new from './Navbar_new';
 import Orders from './Orders';
 import Nav from './Nav';
 import Nav_1 from './Newnav';
+import Admin from './Admin';
+import Mens_details from './Mens_details';
+import Bynow from './Bynow';
+import Checkout from './Checkout/Checkout';
 
 
 
 function App() {
   return (
     <div className="pp">
-      <Nav_1/>
+      {/* <Nav_1/> */}
 
   
                 <ToastContainer closeButton={false}  position="top-right" />
@@ -41,6 +45,9 @@ function App() {
                 <Route path='/electroics' element={<Electronics/>}/>
                 <Route path='/jewelery' element={<Jwel/>}/>
                 <Route path='/Orders' element={<Orders/>}/>
+                <Route path='/Mens_details' element={<Mens_details/>}/>
+                <Route path="/Bynow" element={<Bynow/>}/>
+                <Route path="/Checkout" element={<Checkout/>}/>
 
                 </Routes>
    

@@ -12,7 +12,7 @@ import axios from "axios"
  class Electronics extends Component {
     constructor(props){
         super(props)
-        this.props={
+        this.state={
           id:"",
           category:"",
           description:"",
@@ -42,6 +42,13 @@ import axios from "axios"
     })
 
 
+    }
+
+    componentDidMount=()=>{
+      let datas = JSON.parse(localStorage.getItem("user_email")) || []
+      console.log("datas",datas[0])
+     
+      this.setState({user_id:datas[0]})
     }
   render() {
     const Item = styled(Paper)(({ theme }) => ({

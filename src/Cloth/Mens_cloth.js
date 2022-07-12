@@ -7,6 +7,7 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Navbar_new from '../Navbar_new';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
  class Mens_cloth extends Component {
   constructor(props){
@@ -37,8 +38,9 @@ componentDidMount=()=>{
     console.log("ddd",dd)
     const pricee = Math.round(price)
     console.log("prieeee",pricee)
+    localStorage.setItem("id",id)
     this.setState({id:id,category:dd,description:description,price:pricee,image:image,title:title})
-    axios.post(`http://localhost:7001/product`,{
+    axios.post(`http://localhost:7001/Product_men`,{
       
       category:this.state.category,
       description:this.state.description,
@@ -63,9 +65,11 @@ componentDidMount=()=>{
     const data = this.props.router.location.state
     console.log("data",data)
     console.log("id",this.state.user_id)
+    // console.log("state",this.state)
+
     return (
       <div>
-        <div >
+        <div style={{marginTop:"-16px"}}>
           <Navbar_new/>
         </div>
           <div>
@@ -78,9 +82,16 @@ componentDidMount=()=>{
             <Item >   Desc:{d.description.slice(0,20)}</Item>
             <Item > <h4> Price:{Math.round(d.price)} </h4></Item>
             <Item >  {<img style={{height:"150px"}} src={d.image}/>}</Item>
-            <Item><Button variant="contained" color='success' onClick={()=>this.Add_product(d.id,d.category,d.description,d.price,d.image,d.title)}>Add</Button></Item>
-           <Item> <Button variant="contained" color="error">Remove</Button>
-            </Item>
+            <Item>
+              <Link to="/Mens_details" state ={this.props.router.location.state}>
+              {/* {console.log("dd",d)} */}
+            
+              <Button variant='contained' color='secondary' onClick={()=>this.Add_product(d.id,d.category,d.description,d.price,d.image,d.title)}> View Details  
+              
+              </Button>  </Link></Item>
+            {/* <Item> <Button variant="contained" color='success' onClick={()=>this.Add_product(d.id,d.category,d.description,d.price,d.image,d.title)}>Add</Button>
+            <Button variant="contained" color="error">Remove</Button>
+            </Item> */}
         
           </Grid>
         ))}
